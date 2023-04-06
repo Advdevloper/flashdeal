@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../images/favicon.ico">
 
-    <title>Sunny Admin - Dashboard</title>
+    <title>Flash Deal - Dashboard</title>
     
     {{-- Style Blade START --}}
 	@include('admin.dashboard_layout.style')

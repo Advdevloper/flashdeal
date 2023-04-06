@@ -1,6 +1,6 @@
 //[Preview Menu Javascript]
 
-//Project:	Sunny Admin - Responsive Admin Template
+//Project:	Flash Deal - Responsive Admin Template
 //Primary use:   This file is for demo purposes only.
 
 $(function () {

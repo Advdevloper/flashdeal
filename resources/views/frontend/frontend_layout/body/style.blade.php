@@ -3,6 +3,7 @@
 
 <!-- Customizable CSS -->
 <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/main.css">
+<link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/front-extra.css">
 <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/blue.css">
 <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/owl.carousel.css">
 <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/owl.transitions.css">

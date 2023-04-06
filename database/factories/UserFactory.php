@@ -27,7 +27,7 @@ class UserFactory extends Factory
             'name' => 'user',
             'email' => 'user@gmail.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('12345678'),
+            'password' => Hash::make('Advantal@123'),
             'remember_token' => Str::random(10),
         ];
     }

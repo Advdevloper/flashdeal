@@ -1,6 +1,6 @@
 //[editor Javascript]
 
-//Project:	Sunny Admin - Responsive Admin Template
+//Project:	Flash Deal - Responsive Admin Template
 //Primary use:   Used only for the wysihtml5 Editor
 
 

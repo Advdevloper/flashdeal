@@ -1,7 +1,7 @@
 //[Master Javascript]
 
-//Project:	Sunny Admin - Responsive Admin Template
-//Primary use:	Sunny Admin - Responsive Admin Template
+//Project:	Flash Deal - Responsive Admin Template
+//Primary use:	Flash Deal - Responsive Admin Template
 
 //should be included in all pages. It controls some layout
 

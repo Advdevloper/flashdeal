@@ -1,6 +1,6 @@
 //[timer contact Javascript]
 
-//Project:	Sunny Admin - Responsive Admin Template
+//Project:	Flash Deal - Responsive Admin Template
 
 $(function () {
     "use strict";

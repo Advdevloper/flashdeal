@@ -15,7 +15,7 @@
 <script src="{{ asset('backend') }}/js/pages/data-table.js"></script>
 @yield('dashboard_script')
 
-<!-- Sunny Admin App -->
+<!-- Flash Deal App -->
 <script src="{{ asset('backend') }}/js/template.js"></script>
 {{-- <script src="{{ asset('backend') }}/js/pages/dashboard.js"></script> --}}
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

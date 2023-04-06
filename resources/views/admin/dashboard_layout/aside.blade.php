@@ -14,8 +14,8 @@
                 <a href="index.html">
                 <!-- logo for regular state and mobile devices -->
                     <div class="d-flex align-items-center justify-content-center">
-                        <img src="{{ asset('backend') }}/images/logo-dark.png" alt="">
-                        <h3><b>Flash Deal</b> Admin</h3>
+                        <img src="{{ asset('backend') }}/images/logobig.png" width="40px" alt="">
+                        <h3><b>Flash <span style="color:#f9b33e"> Deal</span></b> </h3>
                     </div>
             </a>
         </div>
@@ -26,13 +26,47 @@
 
     <li class="{{ ($route == 'admin.dashboard') ? 'active':'' }}">
         <a href="{{ route('admin.dashboard') }}">
-            <i data-feather="pie-chart"></i>
+           <i class="mdi mdi-home"></i>
             <span>Dashboard</span>
         </a>
     </li>
+    <li class="treeview ">
+        <a href="#">
+            <i class="mdi mdi-account"></i> <span>Customers</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+        </span>
+        </a>
+        <ul class="treeview-menu">
+            <li class="">
+                <a href="#"><i class="ti-more"></i>Add Customers</a>
+            </li>
+            <li class="">
+                <a href="#"><i class="ti-more"></i>View Customers</a>
+            </li>
+           
+        </ul>
+    </li>
+    <li class="treeview ">
+        <a href="#">
+            <i class="mdi mdi-account-card-details"></i> <span>Vendor</span>
+        <span class="pull-right-container">
+            <i class="fa fa-angle-right pull-right"></i>
+        </span>
+        </a>
+        <ul class="treeview-menu">
+            <li class="">
+                <a href="#"><i class="ti-more"></i>Add Vendor</a>
+            </li>
+            <li class=" ">
+                <a href="#"><i class="ti-more"></i>View Vendor</a>
+            </li>
+           
+        </ul>
+    </li>
     <li class="treeview {{ Request::is('admin/orders*') ? 'active' : '' }}">
         <a href="#">
-        <i data-feather="file"></i> <span>Orders</span>
+            <i class="mdi mdi-format-list-bulleted"></i> <span>Orders</span>
         <span class="pull-right-container">
             <i class="fa fa-angle-right pull-right"></i>
         </span>
@@ -70,7 +104,7 @@
 
     <li class="treeview {{ ($route == 'brands.index') ? 'active' : '' }}">
         <a href="#">
-        <i data-feather="message-circle"></i>
+        <i class="mdi mdi-format-list-bulleted"></i>
         <span>Brands</span>
         <span class="pull-right-container">
             <i class="fa fa-angle-right pull-right"></i>
@@ -84,7 +118,7 @@
     </li>
     <li class="treeview {{ ($route == 'categories.index') ? 'active' : '' }}">
         <a href="#">
-        <i data-feather="message-circle"></i>
+            <i class="mdi mdi-chart-timeline"></i>
         <span>Category</span>
         <span class="pull-right-container">
             <i class="fa fa-angle-right pull-right"></i>
@@ -105,7 +139,7 @@
 
     <li class="treeview {{ ($route == 'products.index') ? 'active' : '' }}">
         <a href="#">
-        <i data-feather="mail"></i> <span>Product Catalog</span>
+            <i class="mdi mdi-truck"></i> <span>Product</span>
         <span class="pull-right-container">
             <i class="fa fa-angle-right pull-right"></i>
         </span>
@@ -122,7 +156,7 @@
 
     <li class="treeview {{ ($prefix == '/slider') ? 'active' : '' }}">
         <a href="#">
-        <i data-feather="file"></i> <span>Slider</span>
+            <i class="mdi mdi-format-list-bulleted"></i><span>Slider</span>
         <span class="pull-right-container">
             <i class="fa fa-angle-right pull-right"></i>
         </span>
@@ -136,7 +170,7 @@
 
     <li class="treeview {{ ($prefix == '/coupons') ? 'active' : '' }}">
         <a href="#">
-        <i data-feather="file"></i> <span>Coupons</span>
+            <i class="mdi mdi-credit-card-off"></i> <span>Coupons</span>
         <span class="pull-right-container">
             <i class="fa fa-angle-right pull-right"></i>
         </span>
@@ -149,7 +183,7 @@
     </li>
     <li class="treeview {{ ($prefix == '/division') ? 'active' : '' }}">
         <a href="#">
-        <i data-feather="file"></i> <span>Shipping Area</span>
+            <i class="mdi mdi-image-filter-center-focus-weak"></i> <span>Shipping Area</span>
         <span class="pull-right-container">
             <i class="fa fa-angle-right pull-right"></i>
         </span>
@@ -167,27 +201,7 @@
         </ul>
     </li>
 
-    <li class="header nav-small-cap">User Interface</li>
-
-    <li class="treeview">
-        <a href="#">
-        <i data-feather="grid"></i>
-        <span>Components</span>
-        <span class="pull-right-container">
-            <i class="fa fa-angle-right pull-right"></i>
-        </span>
-        </a>
-        <ul class="treeview-menu">
-        <li><a href="components_alerts.html"><i class="ti-more"></i>Alerts</a></li>
-        <li><a href="components_badges.html"><i class="ti-more"></i>Badge</a></li>
-        <li><a href="components_buttons.html"><i class="ti-more"></i>Buttons</a></li>
-        <li><a href="components_sliders.html"><i class="ti-more"></i>Sliders</a></li>
-        <li><a href="components_dropdown.html"><i class="ti-more"></i>Dropdown</a></li>
-        <li><a href="components_modals.html"><i class="ti-more"></i>Modal</a></li>
-        <li><a href="components_nestable.html"><i class="ti-more"></i>Nestable</a></li>
-        <li><a href="components_progress_bars.html"><i class="ti-more"></i>Progress Bars</a></li>
-        </ul>
-    </li>
+   
     </ul>
 </section>
 
