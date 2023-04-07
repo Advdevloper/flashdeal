@@ -40,7 +40,7 @@ use App\Http\Controllers\User\WishlistController;
 */
 // Frontend customer/user logout, profile, change password routes
 
-
+//deeepak patel  123 
 Route::middleware(['auth:web'])->group(function(){
 
     Route::middleware(['auth:sanctum, web', 'verified'])->get('/dashboard',[FrontendUserProfileController::class, 'userdashboard'])->name('dashboard');
