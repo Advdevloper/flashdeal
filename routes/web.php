@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\CustomerControler;
+use App\Http\Controllers\Backend\vendorRagister;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
@@ -126,6 +127,7 @@ Route::get('/checkout-page',[CheckoutController::class,'checkoutPage'])->name('c
 Route::get('/division/district/ajax/{division_id}', [CheckoutController::class, 'getDistrict']);
 Route::get('/district/state/ajax/{district_id}', [CheckoutController::class, 'getState']);
 Route::post('/checkout-store',[CheckoutController::class, 'checkoutStore'])->name('checkout.store');
+Route::get('/ragister-vendor',[vendorRagister::class, 'formRagister'])->name('ragister.vendor');
 
 
 

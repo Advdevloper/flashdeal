@@ -24,6 +24,10 @@
                                 <a href="{{ route('login') }}"><i class="icon fa fa-lock"></i>Login/Register</a>
                             @endauth
                         </li>
+                        <li>
+                          <a href="{{ route('user.logout') }}"><i class="icon fa fa-user"></i>Register as a Seller</a>
+                          
+                        </li>
                     </ul>
                 </div>
                 <!-- /.cnt-account -->
@@ -113,7 +117,8 @@
                 <div class="col-xs-12 col-sm-12 col-md-2 animate-dropdown top-cart-row">
                     <!--  SHOPPING CART DROPDOWN  -->
 
-                    <div class="dropdown dropdown-cart"> <a href="#" class="dropdown-toggle lnk-cart"
+                    <div class="dropdown dropdown-cart">
+                        <a href="#" class="dropdown-toggle lnk-cart"
                             data-toggle="dropdown">
                             <div class="items-cart-inner">
                                 <div class="basket"> <i class="glyphicon glyphicon-shopping-cart"></i> </div>
@@ -126,6 +131,7 @@
                                 </div>
                             </div>
                         </a>
+                        
                         <ul class="dropdown-menu">
                             <li>
                                 {{-- mini cart start with AJAX START --}}
