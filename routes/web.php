@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\CustomerControler;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
@@ -170,6 +171,8 @@ Route::middleware(['auth:admin'])->group(function(){
         Route::resource('/products', ProductController::class);
         Route::get('/changestatus', [ProductController::class, 'changeStatus'])->name('change-product-status');
 
+        Route::get('/customer', [CustomerControler::class, 'index'])->name('customer');
+        Route::get('/customerdetail/{id}', [CustomerControler::class, 'customerdetail'])->name('customerdetail');
         // slider routes
         Route::resource('/slider', AdminSliderController::class);
         Route::get('/changesliderstatus', [AdminSliderController::class, 'changeSliderStatus'])->name('change-product-status');

@@ -30,23 +30,27 @@
             <span>Dashboard</span>
         </a>
     </li>
-    <li class="treeview ">
+    <li class="{{ Request::is('admin/customer*') ? 'active' : '' }}">
+        <a href="{{ route('customer') }}">
+            <i class="mdi mdi-account"></i>
+            <span>Customers</span>
+        </a>
+    </li>
+    {{-- <li class="treeview {{ Request::is('admin/customer*') ? 'active' : '' }}">
         <a href="#">
             <i class="mdi mdi-account"></i> <span>Customers</span>
         <span class="pull-right-container">
             <i class="fa fa-angle-right pull-right"></i>
         </span>
         </a>
-        <ul class="treeview-menu">
-            <li class="">
-                <a href="#"><i class="ti-more"></i>Add Customers</a>
-            </li>
-            <li class="">
-                <a href="#"><i class="ti-more"></i>View Customers</a>
+        <ul class="treeview-menu ">
+            
+            <li class=" {{ Request::is('admin/customer') ? 'active' : '' }}">
+                <a href="{{route('customer')}}"><i class="ti-more"></i>View Customers</a>
             </li>
            
         </ul>
-    </li>
+    </li> --}}
     <li class="treeview ">
         <a href="#">
             <i class="mdi mdi-account-card-details"></i> <span>Vendor</span>
