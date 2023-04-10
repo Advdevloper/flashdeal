@@ -644,6 +644,7 @@ class ComposerStaticInit0d17443e0b4126743f7a815d01c85f28
         'App\\Http\\Controllers\\Backend\\StripeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/StripeController.php',
         'App\\Http\\Controllers\\Backend\\SubCategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/SubCategoryController.php',
         'App\\Http\\Controllers\\Backend\\SubSubCategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/SubSubCategoryController.php',
+        'App\\Http\\Controllers\\Backend\\vendorRagister' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/vendorRagister.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\Frontend\\CartController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/CartController.php',
         'App\\Http\\Controllers\\Frontend\\CartPageController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/CartPageController.php',

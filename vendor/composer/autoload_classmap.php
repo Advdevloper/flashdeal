@@ -33,6 +33,7 @@ return array(
     'App\\Http\\Controllers\\Backend\\StripeController' => $baseDir . '/app/Http/Controllers/Backend/StripeController.php',
     'App\\Http\\Controllers\\Backend\\SubCategoryController' => $baseDir . '/app/Http/Controllers/Backend/SubCategoryController.php',
     'App\\Http\\Controllers\\Backend\\SubSubCategoryController' => $baseDir . '/app/Http/Controllers/Backend/SubSubCategoryController.php',
+    'App\\Http\\Controllers\\Backend\\vendorRagister' => $baseDir . '/app/Http/Controllers/Backend/vendorRagister.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\Frontend\\CartController' => $baseDir . '/app/Http/Controllers/Frontend/CartController.php',
     'App\\Http\\Controllers\\Frontend\\CartPageController' => $baseDir . '/app/Http/Controllers/Frontend/CartPageController.php',
