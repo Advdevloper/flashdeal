@@ -51,7 +51,7 @@
            
         </ul>
     </li> --}}
-    <li class="treeview ">
+    <li class="treeview {{ Request::is('admin/vendor*') ? 'active' : '' }}">
         <a href="#">
             <i class="mdi mdi-account-card-details"></i> <span>Vendor</span>
         <span class="pull-right-container">
@@ -59,12 +59,13 @@
         </span>
         </a>
         <ul class="treeview-menu">
-            <li class="">
-                <a href="#"><i class="ti-more"></i>Add Vendor</a>
+            <li  class="{{ Request::is('admin/vendor') ? 'active' : '' }}">
+                <a href="{{ route('vendor.index') }}"><i class="ti-more"></i>All Vendor</a>
             </li>
-            <li class=" ">
-                <a href="#"><i class="ti-more"></i>View Vendor</a>
+            <li class="{{ Request::is('admin/vendor/add') ? 'active' : '' }}">
+                <a href="{{ route('vendor.add') }}"><i class="ti-more"></i>Add Vendor</a>
             </li>
+           
            
         </ul>
     </li>
