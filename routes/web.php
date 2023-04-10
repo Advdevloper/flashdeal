@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\CustomerControler;
+use App\Http\Controllers\Backend\VendorController;
 use App\Http\Controllers\Backend\vendorRagister;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
@@ -167,6 +168,12 @@ Route::middleware(['auth:admin'])->group(function(){
 
         Route::get('/category/subcategory/ajax/{category_id}', [SubSubCategoryController::class, 'getSubCategory']);
         Route::get('/category/subsubcategory/ajax/{subcategory_id}', [SubSubCategoryController::class, 'getSubSubCategory']);
+
+
+        //vendor  route 
+        Route::get('/vendor', [VendorController::class, 'index'])->name('vendor.index');
+        Route::get('/vendor/add', [VendorController::class, 'addVendor'])->name('vendor.add');
+        Route::get('/vendor/edit/{id}', [VendorController::class, 'editVendor'])->name('vendor.edit');
 
         // update multi-image route
         Route::post('/products/image/update', [ProductController::class, 'MultiImageUpdate'])->name('update-product-image');
