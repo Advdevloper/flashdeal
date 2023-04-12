@@ -361,8 +361,8 @@ class ComposerStaticInit3cc37e4329a6451eaab3da5117f2e2d1
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -625,9 +625,12 @@ class ComposerStaticInit3cc37e4329a6451eaab3da5117f2e2d1
         'App\\Actions\\Fortify\\UpdateUserPassword' => __DIR__ . '/../..' . '/app/Actions/Fortify/UpdateUserPassword.php',
         'App\\Actions\\Fortify\\UpdateUserProfileInformation' => __DIR__ . '/../..' . '/app/Actions/Fortify/UpdateUserProfileInformation.php',
         'App\\Actions\\Jetstream\\DeleteUser' => __DIR__ . '/../..' . '/app/Actions/Jetstream/DeleteUser.php',
+        'App\\Console\\Commands\\testdbconnection' => __DIR__ . '/../..' . '/app/Console/Commands/testdbconnection.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Guards\\AdminStatefulGuard' => __DIR__ . '/../..' . '/app/Guards/AdminStatefulGuard.php',
+        'App\\Http\\Controllers\\API\\BaseController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/BaseController.php',
+        'App\\Http\\Controllers\\API\\customer\\CutomerController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/customer/CutomerController.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
         'App\\Http\\Controllers\\Backend\\AdminProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/AdminProfileController.php',
         'App\\Http\\Controllers\\Backend\\AdminSliderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/AdminSliderController.php',
@@ -644,6 +647,7 @@ class ComposerStaticInit3cc37e4329a6451eaab3da5117f2e2d1
         'App\\Http\\Controllers\\Backend\\StripeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/StripeController.php',
         'App\\Http\\Controllers\\Backend\\SubCategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/SubCategoryController.php',
         'App\\Http\\Controllers\\Backend\\SubSubCategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/SubSubCategoryController.php',
+        'App\\Http\\Controllers\\Backend\\VendorController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/VendorController.php',
         'App\\Http\\Controllers\\Backend\\vendorRagister' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/vendorRagister.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\Frontend\\CartController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/CartController.php',

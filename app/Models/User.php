@@ -32,6 +32,7 @@ class User extends Authenticatable
         'otp_verified',
         'vander_id',
         'role_type',
+        'token',
     ];
 
     /**

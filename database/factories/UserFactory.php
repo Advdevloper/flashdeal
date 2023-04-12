@@ -30,7 +30,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => Hash::make('Advantal@123'),
             'otp' => '1234',
-            'otp_verified' => '1',
+            'otp_verified' => '',
             'vander_id' => '1',
             'role_type' => '1',
             'remember_token' => Str::random(10),

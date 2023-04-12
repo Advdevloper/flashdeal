@@ -22,12 +22,14 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('phone_number')->nullable();
                 $table->string('otp')->nullable();
-                $table->string('otp_verified')->default(1);
-                $table->string('vander_id')->default(1);
+                $table->string('otp_verified')->default(0);
+                $table->string('vander_id') ->nullable();
                 $table->string('role_type')->default(1);
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();
+            $table->text('divice_token')->default(0);
+            $table->text('token')->nullable();
             $table->timestamps();
         });
     }

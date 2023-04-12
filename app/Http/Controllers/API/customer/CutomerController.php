@@ -7,107 +7,244 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Validator;
+use Laravel\Sanctum\Sanctum;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Mail\Mailable;
+use Illuminate\Support\Facades\URL;
 
 class CutomerController extends BaseController
 {
 
   public function sign_in(Request $request)
   {
+    $data = $request->all();
+    $validator = Validator::make($request->all(), [
+      'email'    => 'required|email',
+      'password' => 'required',
+      'divice_token' => 'required',
 
-    echo "hel9";
-    //   $rules = [
-    //     'email' => 'required',
-    //     'password' => 'required',
+    ]);
 
-    //   ];
-
-    //   $input  = $request->all();
-    //   $validator = Validator::make($input, $rules);
-    //   if ($validator->fails()) {
-    //     $result['id'] = '';
-    //     $result['email'] = '';
-    //     //return response()->json(['success' => 'false', 'data' => $result, 'message' => "Please enter all fields"]);
-    //     return $this->sendError('Please enter all fields.', $validator->errors());
-    //     die();
-    //   }
-
-    //   if (!auth()->attempt($request->all())) {
-    //     $result['id'] = '';
-    //     $result['email'] = '';
-    //     //return response(['status' => 'false', 'data' => $result, 'message' => 'Invalid Credentials']);
-    //     return $this->sendError('Invalid Credentials.', $validator->errors());
-    //     die();
-    //   }
-
-    //   $user = User::Select('id', 'email', 'name')->where('email', $request->email)->orwhere('password', $request->password)->first();
-    //   $id = $user->id;
-    //   $user = Auth::user();
-    //   $dataa['token'] = Auth::user()->createToken('auth_token')->plainTextToken;
-    //   $dataa['id'] = "$id";
-    //   $dataa['email'] = $user->email;
-    //   $dataa['username'] = $user->name;
-    //   // echo json_encode(array('status' => 'true', 'data' => $dataa, 'message' => 'User Login Successfully'));
-    //   return $this->sendResponse($dataa, 'User Login successfully.');
+    if ($validator->fails()) {
+      return $this->sendError('Validation Error.', $validator->errors());
+    }
+    $email_match = DB::table('users')->where('email', $request->email)->first();
+    if ($email_match == '') {
+      return $this->sendError('email required', ['error' => 'email not match']);
+      die();
+    }
+    // $password=bcrypt($data['password']) ;
+    // $password = DB::table('users')->where('password',$password)->first();
+    //  if($password== ''){
+    //   return $this->sendError('password required', ['error'=>'password not match']);
     //   die();
+    // }
+    $email_check = DB::table('users')->where('email', $request->email)->first();
+    $verifyotp = $email_check->otp_verified;
+    if ($verifyotp == '0') {
+      return $this->sendError('dont verify.', ['error' => 'Please verify status']);
+      die();
+    }
+    if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+      $user = Auth::user();
+      $success['token'] = $user->createToken("API TOKEN")->plainTextToken;
+      $success['name'] =  $user->name;
+      return $this->sendResponse($success, 'User login successfully.');
+      die();
+    } else {
+      return $this->sendError('Unauthorised.', ['error' => 'doess not exist']);
+      die();
+    }
   }
 
-  //================ sIGN UP====================//
+
+  //================ SIGN UP====================//
   public function signup(Request $request)
   {
-
-    $rules = [
-
-      'name' => 'required',
-      'last_name' => 'required',
-      'email'    => 'unique:users|required',
-      'password' => 'required',
-
-    ];
+    $from = env('MAIL_FROM_ADDRESS');
 
     $data = $request->all();
 
-    $validator = Validator::make($data, $rules);
-
-    $dataa['name'] = '';
-
-    $dataa['last_name'] = '';
-
-    $dataa['email'] = '';
-
-    $dataa['password'] = '';
-
-    $dataa['phone_number'] = '';
-
-    $dataa['role_type'] = '';
-
-    $error_msg = '';
-
-    $error_msg = $validator->errors()->first();
-
+    $validator = Validator::make($request->all(), [
+      'name' => 'required',
+      'last_name' => 'required',
+      'email'    => 'required|email|unique:users',
+      'password' => 'required',
+      'c_password' => 'required|same:password',
+    ]);
+    $otp = rand(1231, 7879);
     if ($validator->fails()) {
-
-      return response()->json(['status' => 'false', 'data' => $dataa, 'message' => $error_msg]);
-      // return $this->sendError('Validation Error.', $validator->errors());
-      die();
+      return $this->sendError('Validation Error.', $validator->errors());
     }
-    $response_data = array('name' => $data['name'], 'last_name' => $data['last_name'], 'email' => $data['email'], 'phone_number' => $data['phone_number'],'role_type' => '1', 'password' => bcrypt($data['password']));
 
-    $data_user =   array('name' => $data['name'], 'last_name' => $data['last_name'], 'email' => $data['email'], 'phone_number' => $data['phone_number'], 'password' => bcrypt($data['password']));
+    $response_data['data'] = array('name' => $data['name'], 'last_name' => $data['last_name'], 'email' => $data['email'], 'phone_number' => $data['phone_number'], 'role_type' => '1', 'password' => bcrypt($data['password']), 'otp' => $otp);
+
+    $data_user =   array('name' => $data['name'], 'last_name' => $data['last_name'], 'email' => $data['email'], 'phone_number' => $data['phone_number'], 'password' => bcrypt($data['password']), 'otp' => $otp);
 
     $user = User::create($data_user);
-    // $token = $user()->createToken('auth_token')->plainTextToken;
-    //$role = DB::table('roles')->insertGetId[' name' => $data['first_name'],'display_name' => $data['first_name']]);
-
+    $dataa = array('name' => $data['name'], 'email' => $data['email'], 'otp' => $otp, 'from' => $from);
+    $email =  $data['email'];
+    Mail::send('mail.verify-otp', $dataa, function ($message) use ($dataa) {
+      $message->to($dataa['email'])->subject('flashdealapp otp Mail');
+      $message->from($dataa['from'], 'flashdealapp');
+    });
+    $response_data['token'] = $user->createToken("API TOKEN")->plainTextToken;
     if ($user) {
 
-      return response()->json(array('status' => 'true', 'data' => $data_user, 'message' => 'User Register Successfully'));
-      // return $this->sendResponse($response_data, 'User register successfully.');
+      // return response()->json(array('status' => 'true', 'data' => $data_user, 'message' => 'User Register Successfully'));
+      return $this->sendResponse($response_data, 'User register successfully. your otp hase been sent your mail');
       die();
     } else {
 
-      return response()->json(array('status' => 'false', 'data' => $dataa, 'message' => 'Somthing went wrong'));
-      // return $this->sendError('Validation Error.', $validator->errors());
+      return response()->json(array('status' => 'false', 'data' => '400', 'message' => 'Somthing went wrong'));
+
+      die();
+    }
+  }
+
+  //================ user_logout====================//
+  public function user_logout()
+  {
+    dd('okay');
+    //  Auth::user()->currentAccessToken()->delete();
+
+
+  }
+
+
+  //================ verify_otp====================//
+  public function verify_otp(Request $request)
+  {
+    $validator = Validator::make($request->all(), [
+      'otp'    => 'required',
+    ]);
+
+    $otp = $request->otp;
+    $email = $request->email;
+    if ($validator->fails()) {
+      return $this->sendError('Validation Error.', $validator->errors());
+    }
+    $user = DB::table('users')->where('email', $email)->first();
+
+    if ($user == '') {
+      return $this->sendError('user not exist', ['error' => ' user not exist']);
+      die();
+    }
+    $verifyotp = $user->otp;
+    $name = $user->name;
+    $user_id = $user->id;
+    if ($verifyotp == $otp) {
+      $user = User::where('id', $user_id)->update(['otp_verified' => '1']);
+      return $this->sendResponse($name, 'User verify successfully.');
+    } else {
+      return $this->sendError('wrong otp.', ['error' => 'Please fill the correct opt']);
+      die();
+    }
+  }
+
+  //================ resend_otp====================//
+  public function resend_otp(Request $request)
+  {
+    $validator = Validator::make($request->all(), [
+      'email'    => 'required',
+    ]);
+    $data = $request->all();
+    $email = $request->email;
+    if ($validator->fails()) {
+      return $this->sendError('Validation Error.', $validator->errors());
+    }
+    $user = DB::table('users')->where('email', $email)->first();
+
+    if ($user == '') {
+      return $this->sendError('user not exist', ['error' => ' user not exist']);
+      die();
+    }
+    $name = $user->name;
+    $user_id = $user->id;
+    $from = env('MAIL_FROM_ADDRESS');
+    $otp = rand(1231, 7879);
+    $dataa = array('name' => $name, 'email' => $data['email'], 'otp' => $otp, 'from' => $from);
+    $email =  $data['email'];
+    Mail::send('mail.verify-otp', $dataa, function ($message) use ($dataa) {
+      $message->to($dataa['email'])->subject('flashdealapp otp Mail');
+      $message->from($dataa['from'], 'flashdealapp');
+    });
+
+    $user = User::where('id', $user_id)->update(['otp' => $otp]);
+    if ($user) {
+      return $this->sendResponse($name, 'your otp hase been sent your mail.');
+    } else {
+      return $this->sendError('wrong.', ['error' => 'somthing Wrong']);
+    }
+  }
+
+  //================ forgot_password====================//
+  public function forgot_password(Request $request)
+  {
+    $validator = Validator::make($request->all(), [
+      'email'    => 'required',
+    ]);
+    $data = $request->all();
+    $email = $request->email;
+    if ($validator->fails()) {
+      return $this->sendError('Validation Error.', $validator->errors());
+    }
+    $user = DB::table('users')->where('email', $email)->first();
+
+    if ($user == '') {
+      return $this->sendError('email not exist', ['error' => 'email not exist']);
+      die();
+    }
+    $random = Str::random(40);
+    $domain = URL::to('/');
+    $url = $domain . '/' . $random;
+    $name = $user->name;
+    $user_id = $user->id;
+    $from = env('MAIL_FROM_ADDRESS');
+    $email =  $data['email'];
+    $dataa = array('url' => $url, 'email' => $email, 'name' => $name, 'title' => 'forgot password', 'body' => 'please click here to below to verify mail.', 'from' => $from);
+
+    Mail::send('mail.forgot-password', $dataa, function ($message) use ($dataa) {
+      $message->to($dataa['email'])->subject('flashdealapp otp Mail');
+      $message->from($dataa['from'], 'flashdealapp');
+    });
+
+    $user = User::where('id', $user_id)->update(['token' => $random]);
+    if ($user) {
+      return $this->sendResponse($name, 'your forgot password link hase been sent your mail.');
+    } else {
+      return $this->sendError('wrong.', ['error' => 'somthing Wrong']);
+    }
+  }
+
+  //================ update-password====================//
+  public function update_password(Request $request)
+  {
+
+    $data = $request->all();
+
+    $validator = Validator::make($request->all(), [
+      'token' => 'required',
+      'password' => 'required',
+      'c_password' => 'required|same:password',
+    ]);
+
+    if ($validator->fails()) {
+      return $this->sendError('Validation Error.', $validator->errors());
+    }
+
+    $token =  $data['token'];
+    $data_user =   array('password' =>bcrypt($data['password']));
+    $user = User::where('token', $token)->update($data_user);
+    if ($user) {
+      return $this->sendResponse($data_user, 'User register successfully. your otp hase been sent your mail');
+      die();
+    } else {
+      return response()->json(array('status' => 'false', 'data' => '400', 'message' => 'Somthing went wrong'));
       die();
     }
   }
