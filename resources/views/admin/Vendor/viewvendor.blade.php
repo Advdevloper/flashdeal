@@ -11,7 +11,7 @@
             <div class="col-md-12 col-lg-12">
                 <div class="box">
                     <div class="box-header with-border d-flex justify-content-between align-items-center">
-                        <h3 class="box-title">Edit Vendor</h3>
+                        <h3 class="box-title">Vendor Detail</h3>
                         <a href="{{ route('vendors.index') }}" class="btn btn-primary">Back Vendor List</a>
                     </div>
                     <!-- /.box-header -->
@@ -19,132 +19,109 @@
                         <form action="{{ route('vendors.update', $vendordetail->id) }}"  method="post"  enctype="multipart/form-data">
                             @method('PUT')
                             @csrf 
-                            <h5 class="text-warning">Vendor Basic Informations</h5>
-                            <hr>
+                         
                             <div class="row">
                                 <div class="col-md-4">
+                                    <h5 class="text-warning mt-4">Fist Name</h5>
                                     <div class="form-group">
-                                        <h5>First Name <span class="text-danger">*</span></h5>
-                                        <div class="controls">
-                                            <input type="text" name="vendor_firstname" value="{{$vendordetail->vendor_firstname}}" class="form-control" required=""  data-validation-required-message="This field is required"> <div class="help-block" ></div>
-                                        </div>
-                                        
+                                        <h5>{{$vendordetail->vendor_firstname}}</h5>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
+                                    <h5 class="text-warning mt-4">Last Name</h5>
                                     <div class="form-group">
-                                        <h5>Last Name <span class="text-danger">*</span></h5>
-                                        <div class="controls">
-                                            <input type="text" name="vendor_lastname" value="{{$vendordetail->vendor_lastname}}" class="form-control" required=""  data-validation-required-message="This field is required"> <div class="help-block"></div>
-                                        </div>
+                                        <h5>{{$vendordetail->vendor_lastname}}</h5>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
+                                    <h5 class="text-warning mt-4">Business Name</h5>
                                     <div class="form-group">
-                                        <h5>Business Name <span class="text-danger">*</span></h5>
-                                        <div class="controls">
-                                            <input type="text" name="vendor_businessname" value="{{$vendordetail->vendor_businessname}}" class="form-control" required=""  data-validation-required-message="This field is required"> <div class="help-block"></div>
-                                        </div>
+                                        <h5>{{$vendordetail->vendor_businessname}}</h5>
                                     </div>
                                 </div>
+                                
                                 <div class="col-md-4">
+                                    <h5 class="text-warning mt-4">Email</h5>
                                     <div class="form-group">
-                                        <h5>Email  <span class="text-danger">*</span></h5>
-                                        <div class="controls">
-                                            <input type="email" name="vendor_email" value="{{$vendordetail->vendor_email}}"  class="form-control"  required=""  data-validation-required-message="This field is required"> <div class="help-block"></div>
-                                        </div>
-                                    </div>
-                                </div> 
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <h5>Mobile Number  <span class="text-danger">*</span></h5>
-                                        <div class="controls">
-                                            <input type="number" name="vendor_mobile" value="{{$vendordetail->vendor_mobile}}" class="form-control"  required=""  data-validation-required-message="This field is required"> <div class="help-block"></div>
-                                        </div>
-                                        @if ($errors->has('vendor_mobile'))
-                                        <span class="text-danger">{{ $errors->first('vendor_mobile') }}</span>
-                                    @endif
+                                        <h5>{{$vendordetail->vendor_email}}</h5>
                                     </div>
                                 </div>
-                            </div>
-                            <h5 class="text-warning">Vendor Address</h5>
-                            <hr>
-                            <div class="row">
+                                
                                 <div class="col-md-4">
+                                    <h5 class="text-warning mt-4">Mobile Number</h5>
                                     <div class="form-group">
-                                        <h5>Country <span class="text-danger">*</span></h5>
-                                        <div class="controls">
-                                            <input type="text" name="vendor_country" class="form-control"  value="{{$vendordetail->vendor_country}}" required="" data-validation-required-message="This field is required"> <div class="help-block"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <h5>State <span class="text-danger">*</span></h5>
-                                        <div class="controls">
-                                            <input type="text" name="vendor_state" class="form-control" value="{{$vendordetail->vendor_state}}"  required="" data-validation-required-message="This field is required"> <div class="help-block"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                              
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <h5>Address  <span class="text-danger">*</span></h5>
-                                        <div class="controls">
-                                            <input type="number" name="vendor_address" class="form-control" value="{{$vendordetail->vendor_address}}"  required="" data-validation-required-message="This field is required" > <div class="help-block"></div>
-                                        </div>
+                                        <h5>{{$vendordetail->vendor_mobile}}</h5>
                                     </div>
                                 </div>
                                
+                                
+                                
+                            </div>
+                           
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <h5 class="text-warning mt-4">Country</h5>
+                                    <div class="form-group">
+                                        <h5>{{$vendordetail->vendor_country}}</h5>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5 class="text-warning mt-4">State</h5>
+                                    <div class="form-group">
+                                        <h5>{{$vendordetail->vendor_state}}</h5>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <h5 class="text-warning mt-4">Address</h5>
+                                    <div class="form-group">
+                                        <h5>{{$vendordetail->vendor_address}}</h5>
+                                    </div>
+                                </div>
+                                
+                              
+                              
                             </div>
                             <h5 class="text-warning">Legal Document</h5>
                             <hr>
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <h5>Document  <span class="text-danger">*</span></h5>
-                                        <div class="controls">
+                                        <div class="col-md-12">
+                                            <div id="preview_img">
+                                           
+                                                @foreach ($vendordocuments as $vendordocument)
+                                                @php
+                                                  $array = explode('.', $vendordocument->vendordetails_file);
+                                                 if($array[1]=='pdf'){
+                                                    
+                                                 }
+                                                @endphp
+                                                @if($array[1]=='pdf')
+                                                <div class="image_item">
+                                                   
+                                                    <a href="{{ asset('/') }}{{$vendordocument->vendordetails_file}}" target="_blank"> <img src="{{ asset('/backend/images/pdficon.png') }}" width="80px">
+                                                    </a>
+                                                    </div>
+                                                @else
+                                                <div class="image_item">
+                                                 <a href="{{ asset('/') }}{{$vendordocument->vendordetails_file}}" target="_blank"><img src="{{ asset('/') }}{{$vendordocument->vendordetails_file}}" width="80px"></a>
+                                                </div>
+                                                @endif
+                                               
+                                                @endforeach
+                                              
+                                            </div>
+                                        </div>
+                
 
-                                                             @if(count($vendordocuments)!==0)
-                                            <input type="file" id="VendorImg" name="vendor_images[]" class="form-control" multiple="" id="multiImg" > <div class="help-block"></div>
-                                            @else
-                                            <input required="" type="file" id="VendorImg" name="vendor_images[]" class="form-control" multiple="" id="multiImg" > <div class="help-block"></div>
-                                           
-                                            @endif
-                                        </div>
-                                        <div id="preview_img">
-                                           
-                                            @foreach ($vendordocuments as $vendordocument)
-                                            @php
-                                              $array = explode('.', $vendordocument->vendordetails_file);
-                                             if($array[1]=='pdf'){
-                                                
-                                             }
-                                            @endphp
-                                            @if($array[1]=='pdf')
-                                            <div class="image_item">
-                                                <button id="deldocument" data-id="{{$vendordocument->id}}" type="button" class="btn btn-circle btn-danger btn-xs  mb-5"><i class="fa fa-trash"></i></button>
-                                               <img src="{{ asset('/backend/images/pdficon.png') }}" width="80px">
-                                            </div>
-                                            @else
-                                            <div class="image_item">
-                                                <button id="deldocument" data-id="{{$vendordocument->id}}" type="button" class="btn btn-circle btn-danger btn-xs  mb-5"><i class="fa fa-trash"></i></button>
-                                            <img src="{{ asset('/') }}{{$vendordocument->vendordetails_file}}" width="80px">
-                                            </div>
-                                            @endif
-                                           
-                                            @endforeach
-                                          
-                                        </div>
                                     </div>
                                     
                                 </div>
                                
                                
                             </div>
-                            <div class="text-xs-right">
-                                <button type="submit" class="btn btn-rounded btn-info">Update Vendor</button>
-                            </div>
+                         
                         </form>
                     </div>
                     <!-- /.box-body -->
@@ -177,7 +154,7 @@
                         $.ajax({
                             type: "GET",
                             dataType: "json",
-                            url: '/admin/doccumentdelete',
+                            url: '/admin/vendordelete',
                             data: {'id': id},
                             success: function(data){
                                 console.log(data.success)

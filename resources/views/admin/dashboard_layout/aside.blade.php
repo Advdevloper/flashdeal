@@ -59,11 +59,11 @@
         </span>
         </a>
         <ul class="treeview-menu">
-            <li  class="{{ Request::is('admin/vendor') ? 'active' : '' }}">
-                <a href="{{ route('vendor.index') }}"><i class="ti-more"></i>All Vendor</a>
+            <li  class="{{ Request::is('admin/vendors') ? 'active' : '' }}">
+                <a href="{{ route('vendors.index') }}"><i class="ti-more"></i>All Vendor</a>
             </li>
-            <li class="{{ Request::is('admin/vendor/add') ? 'active' : '' }}">
-                <a href="{{ route('vendor.add') }}"><i class="ti-more"></i>Add Vendor</a>
+            <li class="{{ Request::is('admin/vendor/create') ? 'active' : '' }}">
+                <a href="{{ route('vendors.create') }}"><i class="ti-more"></i>Add Vendor</a>
             </li>
            
            

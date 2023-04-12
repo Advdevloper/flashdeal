@@ -34,6 +34,7 @@
                                                     <th>Customer Name</th>
                                                     <th>Customer Email</th>
                                                     <th>Customer Number</th>
+                                                    <th>Vendor Status</th>
                                                     <th>Action</th>
                                                  
                                                 </tr>
@@ -49,6 +50,7 @@
                                                     <td class="sorting_1">{{ $user->name }}</td>
                                                     <td class="sorting_1">{{ $user->email }}</td>
                                                     <td class="sorting_1">{{ $user->phone_number }}</td>
+                                                    <th><button type="button" class="btn btn-success btn-xs">Approved</button></th>
                                                     <td>
                                                         
                                                         <a href="{{ route('customerdetail', $user->id) }}" class="btn btn-info" title="Edit Data"><i class="fa fa-eye"></i></a>

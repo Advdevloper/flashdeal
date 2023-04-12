@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\CustomerControler;
 use App\Http\Controllers\Backend\VendorController;
 use App\Http\Controllers\Backend\vendorRagister;
+use App\Http\Controllers\Backend\vendorsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
@@ -45,7 +46,7 @@ use App\Http\Controllers\User\WishlistController;
 Route::middleware(['auth:web'])->group(function(){
 
     Route::middleware(['auth:sanctum, web', 'verified'])->get('/dashboard',[FrontendUserProfileController::class, 'userdashboard'])->name('dashboard');
-
+    Route::middleware(['auth:sanctum, web', 'verified'])->get('/vendor/dashboard',[VendorDashboardController::class, 'vendordashboard'])->name('vendor.dashboard');
     Route::prefix('/user')->group(function () {
         Route::get('/logout', [FrontendUserProfileController::class, 'userlogout'])->name('user.logout');
         Route::get('/profile', [FrontendUserProfileController::class, 'userprofile'])->name('user.profile');
@@ -171,10 +172,15 @@ Route::middleware(['auth:admin'])->group(function(){
 
 
         //vendor  route 
-        Route::get('/vendor', [VendorController::class, 'index'])->name('vendor.index');
-        Route::get('/vendor/add', [VendorController::class, 'addVendor'])->name('vendor.add');
-        Route::get('/vendor/edit/{id}', [VendorController::class, 'editVendor'])->name('vendor.edit');
+        // Route::get('/vendor', [VendorController::class, 'index'])->name('vendor.index');
+        // Route::get('/vendor/add', [VendorController::class, 'addVendor'])->name('vendor.add');
+        // Route::get('/vendor/edit/{id}', [VendorController::class, 'editVendor'])->name('vendor.edit');
 
+        Route::resource('/vendors', vendorsController::class);
+        Route::get('/vendors/edit/{id}', [vendorsController::class, 'edit'])->name('vendors.edit');
+        Route::get('/vendors/view/{id}', [vendorsController::class, 'show'])->name('vendors.show');
+        Route::get('/vendordelete', [vendorsController::class, 'destroy'])->name('vendors.delete');
+        Route::get('/doccumentdelete', [vendorsController::class, 'destroydoccument'])->name('vendors.documentdelete');
         // update multi-image route
         Route::post('/products/image/update', [ProductController::class, 'MultiImageUpdate'])->name('update-product-image');
         Route::resource('/products', ProductController::class);

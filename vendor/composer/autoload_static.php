@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit3cc37e4329a6451eaab3da5117f2e2d1
+class ComposerStaticInit8ce0d76b7085758c7abeb230ea368bea
 {
     public static $files = array (
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -361,8 +361,8 @@ class ComposerStaticInit3cc37e4329a6451eaab3da5117f2e2d1
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -625,9 +625,12 @@ class ComposerStaticInit3cc37e4329a6451eaab3da5117f2e2d1
         'App\\Actions\\Fortify\\UpdateUserPassword' => __DIR__ . '/../..' . '/app/Actions/Fortify/UpdateUserPassword.php',
         'App\\Actions\\Fortify\\UpdateUserProfileInformation' => __DIR__ . '/../..' . '/app/Actions/Fortify/UpdateUserProfileInformation.php',
         'App\\Actions\\Jetstream\\DeleteUser' => __DIR__ . '/../..' . '/app/Actions/Jetstream/DeleteUser.php',
+        'App\\Console\\Commands\\testdbconnection' => __DIR__ . '/../..' . '/app/Console/Commands/testdbconnection.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Guards\\AdminStatefulGuard' => __DIR__ . '/../..' . '/app/Guards/AdminStatefulGuard.php',
+        'App\\Http\\Controllers\\API\\BaseController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/BaseController.php',
+        'App\\Http\\Controllers\\API\\customer\\CutomerController' => __DIR__ . '/../..' . '/app/Http/Controllers/API/customer/CutomerController.php',
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
         'App\\Http\\Controllers\\Backend\\AdminProfileController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/AdminProfileController.php',
         'App\\Http\\Controllers\\Backend\\AdminSliderController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/AdminSliderController.php',
@@ -644,6 +647,8 @@ class ComposerStaticInit3cc37e4329a6451eaab3da5117f2e2d1
         'App\\Http\\Controllers\\Backend\\StripeController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/StripeController.php',
         'App\\Http\\Controllers\\Backend\\SubCategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/SubCategoryController.php',
         'App\\Http\\Controllers\\Backend\\SubSubCategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/SubSubCategoryController.php',
+        'App\\Http\\Controllers\\Backend\\VendorController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/VendorController.php',
+        'App\\Http\\Controllers\\Backend\\VendorsController' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/VendorsController.php',
         'App\\Http\\Controllers\\Backend\\vendorRagister' => __DIR__ . '/../..' . '/app/Http/Controllers/Backend/vendorRagister.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\Frontend\\CartController' => __DIR__ . '/../..' . '/app/Http/Controllers/Frontend/CartController.php',
@@ -694,6 +699,8 @@ class ComposerStaticInit3cc37e4329a6451eaab3da5117f2e2d1
         'App\\Models\\SubCategory' => __DIR__ . '/../..' . '/app/Models/SubCategory.php',
         'App\\Models\\SubSubCategory' => __DIR__ . '/../..' . '/app/Models/SubSubCategory.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Models\\Vendordetail' => __DIR__ . '/../..' . '/app/Models/Vendordetail.php',
+        'App\\Models\\Vendordocument' => __DIR__ . '/../..' . '/app/Models/Vendordocument.php',
         'App\\Models\\Wishlist' => __DIR__ . '/../..' . '/app/Models/Wishlist.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
@@ -6754,10 +6761,10 @@ class ComposerStaticInit3cc37e4329a6451eaab3da5117f2e2d1
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit3cc37e4329a6451eaab3da5117f2e2d1::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit3cc37e4329a6451eaab3da5117f2e2d1::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit3cc37e4329a6451eaab3da5117f2e2d1::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit3cc37e4329a6451eaab3da5117f2e2d1::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit8ce0d76b7085758c7abeb230ea368bea::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit8ce0d76b7085758c7abeb230ea368bea::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit8ce0d76b7085758c7abeb230ea368bea::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit8ce0d76b7085758c7abeb230ea368bea::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -14,3 +14,21 @@ li.btn-group.nav-item a i {
 aside.main-sidebar section.sidebar ul.sidebar-menu.tree li.active a i {
     color: #fff;
 }
+
+div#preview_img {
+    margin-top: 20px;
+}
+div#preview_img {
+    display: flex;
+    gap: 20px;
+}
+
+.image_item {
+    position: relative;
+}
+.image_item button {
+     position: absolute;
+ 
+    top: -11px;
+    right: -15px;
+}
