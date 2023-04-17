@@ -30,6 +30,10 @@ class CreateUsersTable extends Migration
             $table->text('profile_photo_path')->nullable();
             $table->text('divice_token')->default(0);
             $table->text('token')->nullable();
+            $table->text('lang')->default('en');
+            $table->text('gender')->default('male');
+            $table->text('age')->default('1-10');
+            $table->text('expire_time')->nullable();
             $table->timestamps();
         });
     }

@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\customer\CutomerController;
 
-use App\Http\Controllers\API\customer\VendorController;
+use App\Http\Controllers\API\vendor\VendorController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -16,6 +16,7 @@ use App\Http\Controllers\API\customer\VendorController;
 |
 */
 /* ************** Costomer Api ***************/
+
 Route::post('/sign_in', [CutomerController::class, 'sign_in'])->name('sign_in');
 
 Route::post('/signup', [CutomerController::class, 'signup'])->name('signup');
@@ -26,15 +27,27 @@ Route::post('/resend-otp', [CutomerController::class, 'resend_otp'])->name('rese
 
 Route::post('/forgot-password', [CutomerController::class, 'forgot_password'])->name('forgot-password');
 
-Route::post('/update-password', [CutomerController::class, 'update_password'])->name('update-password');
+// Route::post('/update-password', [CutomerController::class, 'update_password'])->name('update-password');
 
-/* ************** Costomer Api ***************/
+/* ************** Vendor Api ***************/
 Route::post('/vendor-ragister', [VendorController::class, 'vendor_ragister'])->name('vendor-ragister');
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::post('/vendor-sign-in', [VendorController::class, 'vendor_sign_in'])->name('vendor-sign-in');
+
+Route::post('/vendor-forgot-password', [VendorController::class, 'vendor_forgot_password'])->name('vendor-forgot-password');
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
+    /* ************** User Api ***************/
+    Route::post('/language-upadet', [CutomerController::class, 'language_upadet'])->name('language-upadet');
+
+    Route::post('/gender-upadet', [CutomerController::class, 'gender_upadet'])->name('gender-upadet');
+
+    Route::get('/costomer-profile/{id}', [CutomerController::class, 'costomer_profile'])->name('costomer-profile');
 
     Route::get('/user-logout', [CutomerController::class, 'user_logout'])->name('user-logout');
+
+    /* ************** Vendor Api ***************/
+    Route::get('/vendor-profile/{id}', [VendorController::class, 'vendor_profile'])->name('vendor-profile');
+    /* ************** all data Api ***************/
+    Route::get('/slider-data', [CutomerController::class, 'slider_data'])->name('slider-data');
 });

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Http\Controllers\API\BaseController as BaseController;
+use App\Models\Slider;
+use App\Models\Vendordetail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Validator;
@@ -15,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\URL;
+use Carbon\Carbon;
 
 class CutomerController extends BaseController
 {
@@ -37,12 +40,7 @@ class CutomerController extends BaseController
       return $this->sendError('email required', ['error' => 'email not match']);
       die();
     }
-    // $password=bcrypt($data['password']) ;
-    // $password = DB::table('users')->where('password',$password)->first();
-    //  if($password== ''){
-    //   return $this->sendError('password required', ['error'=>'password not match']);
-    //   die();
-    // }
+
     $email_check = DB::table('users')->where('email', $request->email)->first();
     $verifyotp = $email_check->otp_verified;
     if ($verifyotp == '0') {
@@ -51,8 +49,9 @@ class CutomerController extends BaseController
     }
     if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
       $user = Auth::user();
-      $success['token'] = $user->createToken("API TOKEN")->plainTextToken;
-      $success['name'] =  $user->name;
+      $success['access_token'] = $user->createToken("API TOKEN")->plainTextToken;
+      $success['data'] =  $user;
+      $email_check = DB::table('users')->where('email', $request->email)->update(['divice_token' => $data['divice_token']]);
       return $this->sendResponse($success, 'User login successfully.');
       die();
     } else {
@@ -92,7 +91,7 @@ class CutomerController extends BaseController
       $message->to($dataa['email'])->subject('flashdealapp otp Mail');
       $message->from($dataa['from'], 'flashdealapp');
     });
-    $response_data['token'] = $user->createToken("API TOKEN")->plainTextToken;
+    $response_data['access_token'] = $user->createToken("API TOKEN")->plainTextToken;
     if ($user) {
 
       // return response()->json(array('status' => 'true', 'data' => $data_user, 'message' => 'User Register Successfully'));
@@ -199,11 +198,13 @@ class CutomerController extends BaseController
       return $this->sendError('email not exist', ['error' => 'email not exist']);
       die();
     }
+    $route = 'create-password';
     $random = Str::random(40);
     $domain = URL::to('/');
-    $url = $domain . '/' . $random;
+    $url = $domain . '/' . $route . '/' . $random;
     $name = $user->name;
     $user_id = $user->id;
+    $expire_time = Carbon::now()->format('Y-m-d H:s:i');
     $from = env('MAIL_FROM_ADDRESS');
     $email =  $data['email'];
     $dataa = array('url' => $url, 'email' => $email, 'name' => $name, 'title' => 'forgot password', 'body' => 'please click here to below to verify mail.', 'from' => $from);
@@ -213,7 +214,7 @@ class CutomerController extends BaseController
       $message->from($dataa['from'], 'flashdealapp');
     });
 
-    $user = User::where('id', $user_id)->update(['token' => $random]);
+    $user = User::where('id', $user_id)->update(['token' => $random, 'expire_time' => $expire_time]);
     if ($user) {
       return $this->sendResponse($name, 'your forgot password link hase been sent your mail.');
     } else {
@@ -221,27 +222,109 @@ class CutomerController extends BaseController
     }
   }
 
-  //================ update-password====================//
-  public function update_password(Request $request)
+
+  // //================ update-password====================//
+  // public function update_password(Request $request)
+  // {
+
+  //   $data = $request->all();
+
+  //   $validator = Validator::make($request->all(), [
+  //     'token' => 'required',
+  //     'password' => 'required',
+  //     'c_password' => 'required|same:password',
+  //   ]);
+
+  //   if ($validator->fails()) {
+  //     return $this->sendError('Validation Error.', $validator->errors());
+  //   }
+
+  //   $token =  $data['token'];
+  //   $data_user =   array('password' => bcrypt($data['password']));
+  //   $user = User::where('token', $token)->update($data_user);
+  //   if ($user) {
+  //     return $this->sendResponse($data_user, 'User register successfully. your otp hase been sent your mail');
+  //     die();
+  //   } else {
+  //     return response()->json(array('status' => 'false', 'data' => '400', 'message' => 'Somthing went wrong'));
+  //     die();
+  //   }
+  // }
+  // //================ Language====================//
+  public function language_upadet(Request $request)
   {
 
     $data = $request->all();
 
     $validator = Validator::make($request->all(), [
-      'token' => 'required',
-      'password' => 'required',
-      'c_password' => 'required|same:password',
+      'user_id' => 'required',
+      'lang' => 'required',
     ]);
 
     if ($validator->fails()) {
       return $this->sendError('Validation Error.', $validator->errors());
     }
 
-    $token =  $data['token'];
-    $data_user =   array('password' =>bcrypt($data['password']));
-    $user = User::where('token', $token)->update($data_user);
+    $id =  $data['user_id'];
+    $data_user =   array('lang' => $data['lang']);
+    $user = User::where('id', $id)->update($data_user);
     if ($user) {
-      return $this->sendResponse($data_user, 'User register successfully. your otp hase been sent your mail');
+      return $this->sendResponse($data_user, 'language update successfully');
+      die();
+    } else {
+      return response()->json(array('status' => 'false', 'data' => '400', 'message' => 'Somthing went wrong'));
+      die();
+    }
+  }
+
+  // //================ gender_upadet====================//
+  public function gender_upadet(Request $request)
+  {
+
+    $data = $request->all();
+
+    $validator = Validator::make($request->all(), [
+      'user_id' => 'required',
+      'gender' => 'required',
+      'age' => 'required',
+    ]);
+
+    if ($validator->fails()) {
+      return $this->sendError('Validation Error.', $validator->errors());
+    }
+
+    $id =  $data['user_id'];
+    $data_user =   array('age' => $data['age'], 'gender' => $data['gender']);
+    $user = User::where('id', $id)->update($data_user);
+    if ($user) {
+      return $this->sendResponse($data_user, 'language update successfully');
+      die();
+    } else {
+      return response()->json(array('status' => 'false', 'data' => '400', 'message' => 'Somthing went wrong'));
+      die();
+    }
+  }
+  // //================ costomer_profile====================//
+  public function costomer_profile($id)
+  {
+
+    $data = User::where('id', $id)->first();
+    if ($data) {
+      return $this->sendResponse($data, 'user profile data get successfully');
+      die();
+    } else {
+      return response()->json(array('status' => 'false', 'data' => '400', 'message' => 'Somthing went wrong'));
+      die();
+    }
+  }
+
+  // //================ slider_data====================//
+  public function slider_data()
+  {
+
+    $data = Slider::get();
+    if ($data) {
+      return $this->sendResponse($data, 'Slider data get successfully');
       die();
     } else {
       return response()->json(array('status' => 'false', 'data' => '400', 'message' => 'Somthing went wrong'));

@@ -178,23 +178,23 @@
                                                             </td>
                                                         </tr>
                                                     </table>
-                                                    
-                                                <table border="0" cellpadding="0" cellspacing="0"
-                                                class="paragraph_block block-7" role="presentation"
-                                                style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;"
-                                                width="100%">
-                                                <tr>
-                                                    <td class="pad"
-                                                        style="padding-bottom:10px;padding-left:10px;padding-right:10px;padding-top:30px;">
-                                                        <div
-                                                            style="color:#002b62;direction:ltr;font-family:Arial, Helvetica, sans-serif;font-size:38px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:center;mso-line-height-alt:45.6px;">
-                                                            <p style="margin: 0;">
-                                                                <strong>{{ $url }}</strong>
-                                                            </p>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </table>
+
+                                                    <table border="0" cellpadding="0" cellspacing="0"
+                                                        class="paragraph_block block-7" role="presentation"
+                                                        style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;"
+                                                        width="100%">
+                                                        <tr>
+                                                            <td class="pad"
+                                                                style="padding-bottom:10px;padding-left:10px;padding-right:10px;padding-top:30px;">
+                                                                <div
+                                                                    style="color:#002b62;direction:ltr;font-family:Arial, Helvetica, sans-serif;font-size:38px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:center;mso-line-height-alt:45.6px;">
+                                                                    <p style="margin: 0;">
+                                                                        <strong>{{ $url }}</strong>
+                                                                    </p>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
                                                     <table border="0" cellpadding="0" cellspacing="0"
                                                         class="image_block block-12" role="presentation"
                                                         style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;"
